@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./logo.png">
+    <title>Casabian Construction</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+        <script>
+            function scrollToNextPage(currentArrow) {
+                // Get all containers into an array
+                const containers = Array.from(document.querySelectorAll('.container'));
+                // Find the current container based on the current arrow clicked
+                const currentContainerIndex = containers.findIndex(container => container.contains(currentArrow));
+                // Check if there is a next container
+                if (currentContainerIndex !== -1 && currentContainerIndex + 1 < containers.length) {
+                    const nextContainer = containers[currentContainerIndex + 1];
+                    nextContainer.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        </script>
+            
+    <style>
+
+        
+
+.down-arrow {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    cursor: pointer;
+    color: white; /* Changed to white for better contrast */
+    user-select: none; /* Prevent text selection */
+    background-color: black; /* Bubble's background color */
+    padding: 20px; /* Adjust as needed */
+    border-radius: 50%; /* Makes it round */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds some depth */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px; /* Fixed width */
+    height: 50px; /* Fixed height, adjust as needed to maintain the bubble shape */
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with 50% opacity */
+}
+
+        html,
+        body {
+            height: 100%;
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+        }
+
+        .container {
+            min-height: 100vh;
+            /* This ensures the container has a minimum height of 100% of the viewport height */
+            scroll-snap-align: start;
+            padding: 0px;
+            /* Adjusted as per your style to remove padding */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* This will vertically center the content if it's shorter than 100vh */
+        }
+
+        .hero {
+            flex-grow: 1;
+            /* This ensures that .hero will expand to fill the container */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* This will vertically center the text within .hero */
+        }
+
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            overflow-x: hidden;
+            background-color: #f8f9fa;
+        }
+
+        .hero {
+            font-size: 1.5rem;
+            position: relative;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero img.background {
+            width: 100%;
+            height: auto;
+            display: block;
+            /* This will remove any white space underneath the image */
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            max-width: 200px;
+            /* Adjust as necessary for your logo */
+            border-radius: 10px;
+            z-index: 3;
+        }
+
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            z-index: 2;
+            width: 90%;
+            /* For smaller screens */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            /* Text shadow for readability */
+        }
+
+        h1,
+        h3 {
+            margin: 0.5rem 0;
+        }
+
+        .footer {
+            background-color: #222;
+            color: #ccc;
+            padding: 1rem;
+            font-size: 1.5rem;
+            /* Adjusted for better readability on smaller screens */
+            text-align: center;
+            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .footer a,
+        .footer a:visited {
+            color: #5591ff;
+            text-decoration: none;
+        }
+
+        .footer-separator {
+            display: inline;
+            /* Show separator by default */
+            margin: 0 0.5rem;
+            /* Add space around the separator */
+        }
+
+        .phone-link,
+        .phone-link:visited {
+            /* Make the phone number clickable */
+            color: #ccc;
+            /* Same as footer text for consistency */
+            text-decoration: none;
+        }
+
+        /* Media Query for smaller screens */
+        @media (max-width: 600px) {
+
+            .hero-text,
+            .footer {
+                padding: 0.5rem;
+            }
+
+            .hero-text h1,
+            .hero-text h3 {
+                font-size: 1.0rem;
+            }
+
+            .footer {
+                font-size: 0.5rem;
+            }
+
+            .logo {
+                width: 120px;
+                /* Smaller logo on mobile */
+                top: 20px;
+                right: 20px;
+            }
+
+            .footer p {
+                display: block;
+                margin-bottom: 0.5rem;
+                /* Adds a little space between each item */
+            }
+
+            .footer a {
+                display: block;
+                /* Each link will take up the full width of its container */
+                margin-bottom: 0.5rem;
+                /* Adds a little space after the link */
+            }
+
+            .footer div {
+                margin-top: 0.5rem;
+                /* Adds a little space before the copyright line */
+            }
+
+            .footer-separator {
+                display: none;
+                /* Hide separator on small screens */
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container" style="padding: 0px">
+        <div class="hero">
+            <img src="./lagunabeach.jpg" alt="Laguna Beach" class="background" / style="border-radius: 20px">
+            <img src="./logo.png" alt="Casabian Construction Logo" class="logo" />
+            <div class="hero-text">
+                <h1 style="text-transform:uppercase">Casabian Construction</h1>
+                <h3>Residential Remodel</h3>
+                <h3>Decks</h3>
+                
+            </div>
+            <div class="down-arrow" onclick="scrollToNextPage(this)">↓</div>
+        </div>
+        <div class="footer">
+            <span><a href="tel:+15034340426" class="phone-link">(503) 434-0426</a></span>
+            <span class="footer-separator">|</span>
+            <span><a href="mailto:charlie@casabianconstruction.com">charlie@casabianconstruction.com</a></span>
+            <span class="footer-separator">|</span>
+            <span>LIC# 1047029</span>
+            <div>&copy; <span id="current-year"></span> Casabian Construction</div>
+        </div>
+        
+    </div>
+
+
+    <div class="container" style="padding: 0px; max-height:100vh">
+        <div id="carouselExampleCaptions3" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions3" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions3" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions3" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./house_1_2.jpg" class="d-block w-100" alt="..."
+                        style="max-height:100vh; width: 400p; object-fit: cover; border-radius: 20px">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>House renovation</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./house_1.jpg" class="d-block w-100" alt="..."
+                        style="max-height: 100vh; width: auto; object-fit: cover; border-radius: 20px">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>House renovation</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./house_1_3.jpg" class="d-block w-100" alt="..."
+                        style="max-height: 100vh; width: auto; object-fit: cover;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>House renovation</h5>
+                    </div>
+                </div>
+                <div class="down-arrow" onclick="scrollToNextPage(this)">↓</div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions3"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions3"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container" style="padding: 0px; max-height:100vh">
+        
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                    
+            </div>
+            <div class="carousel-inner">
+                
+                <div class="carousel-item active">
+                    
+                    <img src="./bath_after.jpeg" class="d-block w-100" alt="..."
+                        style="max-height:100vh; width: 400p; object-fit: cover; border-radius: 20px">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Bath renovation after</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./bath_before.jpeg" class="d-block w-100" alt="..."
+                        style="max-height: 100vh; width: auto; object-fit: cover; border-radius: 20px">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Bath renovation before</h5>
+                    </div>
+                </div>
+                <div class="down-arrow" onclick="scrollToNextPage(this)">↓</div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    
+</div>
+
+
+    <div class="container" style="padding: 0px; max-height:100vh">
+        <div id="carouselExampleCaptions2" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="3"
+                    aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="4"
+                    aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="5"
+                    aria-label="Slide 6"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="6"
+                    aria-label="Slide 7"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./deck_1_after.jpg" class="d-block w-100" alt="..."
+                        style="max-height:100vh; width: 400p; object-fit: cover; border-radius: 20px">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Deck 1 finished</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./deck_1_wip.jpg" class="d-block w-100" alt="..."
+                        style="max-height: 100vh; width: auto; object-fit: cover; border-radius: 20px">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Deck 1 work in progress</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./deck_2_2.jpg" class="d-block w-100" alt="..."
+                        style="max-height: 100vh; width: auto; object-fit: cover;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Deck 2</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./deck_2_1.jpg" class="d-block w-100" alt="..."
+                        style="max-height: 100vh; width: auto; object-fit: cover;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Deck 2</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./deck_2_wip.jpg" class="d-block w-100" alt="..."
+                        style="max-height: 100vh; width: auto; object-fit: cover;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Deck 2 work in progress</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./deck_3_after.jpg" class="d-block w-100" alt="..."
+                        style="max-height: 100vh; width: auto; object-fit: cover;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Deck 3 finished</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./deck_3_wip.jpg" class="d-block w-100" alt="..."
+                        style="max-height: 100vh; width: auto; object-fit: cover;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Deck 3 work in progress</h5>
+                    </div>
+                </div>
+                <div class="down-arrow" onclick="scrollToNextPage(this)">↓</div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions2"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions2"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" style="padding: 0px; max-height:100vh">
+    <div id="carouselExampleCaptions4" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions4" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions4" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="./shed_1_2.jpg" class="d-block w-100" alt="..."
+                    style="max-height:100vh; width: 400p; object-fit: cover; border-radius: 20px">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Shed</h5>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./shed_1_1.jpg" class="d-block w-100" alt="..."
+                    style="max-height: 100vh; width: auto; object-fit: cover; border-radius: 20px">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Shed work in progress</h5>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions4"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions4"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+
+</body>
+
+</html>
